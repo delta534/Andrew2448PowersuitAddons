@@ -1,7 +1,7 @@
 package andrew.powersuits.modules;
 
-import java.util.List;
-
+import andrew.powersuits.common.AddonUtils;
+import cofh.api.tileentity.ITileInfo;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
 import net.machinemuse.powersuits.common.ModCompatability;
@@ -12,10 +12,10 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.Localization;
-import cofh.api.tileentity.ITileInfo;
+
+import java.util.List;
 
 /**
  * Created by User: Andrew2448
@@ -47,7 +47,7 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.teMultimeter.name");
+        return StatCollector.translateToLocal("module.teMultimeter.name");
     }
 
     @Override

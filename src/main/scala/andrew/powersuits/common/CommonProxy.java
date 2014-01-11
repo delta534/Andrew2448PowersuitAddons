@@ -23,4 +23,12 @@ public class CommonProxy {
     public void registerRenderers() {}
 
     public void readManuals() {}
+
+    public static String getCurrentLanguage() { return null; }
+
+    public static void loadCurrentLanguage() {}
+
+    public static String translate(String str) {return str;}
+
+
 }

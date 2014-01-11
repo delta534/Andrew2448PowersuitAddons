@@ -6,21 +6,23 @@ package andrew.powersuits.client;
 //import andrew.powersuits.book.page.IntroPage;
 //import andrew.powersuits.book.page.TextPage;
 import andrew.powersuits.common.AddonConfig;
+import andrew.powersuits.common.AddonLogger;
 import andrew.powersuits.common.CommonProxy;
 import andrew.powersuits.common.ModularPowersuitsAddons;
 import andrew.powersuits.tick.ClientTickHandler;
 import andrew.powersuits.tick.CommonTickHandler;
 import andrew.powersuits.tick.RenderTickHandler;
+import com.google.common.base.Charsets;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
-import org.w3c.dom.Document;
+import net.minecraft.util.StatCollector;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.InputStreamReader;
+import java.util.Properties;
 
 public class ClientProxy extends CommonProxy {
 
@@ -28,7 +30,52 @@ public class ClientProxy extends CommonProxy {
     private static ClientTickHandler clientTickHandler;
     private static CommonTickHandler commonTickHandler;
 
+
+
+
    // public static SmallFontRenderer smallFontRenderer;
+
+    public static final String LANG_PATH = "/assets/powersuitaddons/lang/";
+    public static String extractedLanguage = "";
+
+
+    @SideOnly(Side.CLIENT)
+    public static String getCurrentLanguage() {
+        return Minecraft.getMinecraft().gameSettings.language;
+    }
+
+
+
+
+    @SideOnly(Side.CLIENT)
+    public static void loadCurrentLanguage() {
+        if (getCurrentLanguage() != extractedLanguage) {
+            extractedLanguage = getCurrentLanguage();
+        }
+        try {
+            InputStream inputStream = ModularPowersuitsAddons.INSTANCE.getClass().getResourceAsStream(LANG_PATH + extractedLanguage + ".lang");
+            Properties langPack = new Properties();
+            langPack.load(new InputStreamReader(inputStream, Charsets.UTF_8));
+            LanguageRegistry.instance().addStringLocalization(langPack, extractedLanguage);
+        } catch (Exception e) {
+            e.printStackTrace();
+            AddonLogger.logError("Couldn't read MPSA localizations for language " + extractedLanguage + " :(");
+        }
+    }
+
+
+    @SideOnly(Side.CLIENT)
+    public static String translate(String str) {
+        loadCurrentLanguage();
+        return StatCollector.translateToLocal(str);
+    }
+
+
+
+
+
+
+
 
     @Override
     public void registerHandlers() {
@@ -46,6 +93,8 @@ public class ClientProxy extends CommonProxy {
         commonTickHandler = new CommonTickHandler();
         TickRegistry.registerTickHandler(commonTickHandler, Side.CLIENT);
     }
+
+
 
    /* @Override
     public void registerRenderers() {

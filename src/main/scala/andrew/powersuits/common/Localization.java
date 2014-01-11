@@ -1,20 +1,25 @@
-package andrew.powersuits.common;
+/*package andrew.powersuits.common;
 
 import com.google.common.base.Charsets;
-
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.StatCollector;
-import net.minecraft.util.StringTranslate;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
-/**
- * Created by User: Andrew2448
- * 1:34 PM 7/30/13
- */
+
+
+
+import andrew.powersuits.common.AddonLogger;
+import andrew.powersuits.common.ModularPowersuitsAddons;
+import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.StatCollector;
+
+import java.io.InputStreamReader;
+
 public class Localization {
     public static final String LANG_PATH = "/assets/powersuitaddons/lang/";
     public static String extractedLanguage = "";
@@ -43,3 +48,4 @@ public class Localization {
         return StatCollector.translateToLocal(str);
     }
 }
+*/

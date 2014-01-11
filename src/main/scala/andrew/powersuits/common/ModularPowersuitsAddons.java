@@ -1,17 +1,7 @@
 package andrew.powersuits.common;
 
 //import andrew.powersuits.book.ItemBook;
-import java.io.File;
-
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.machinemuse.numina.general.MuseLogger;
-import net.machinemuse.powersuits.common.Config;
-import net.machinemuse.utils.MuseFileUtils;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
+import andrew.powersuits.client.ClientProxy;
 import andrew.powersuits.network.AndrewPacketHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -23,11 +13,13 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.machinemuse.utils.MuseFileUtils;
+import net.minecraftforge.common.Configuration;
+
+import java.io.File;
 
 @Mod(modid = ModularPowersuitsAddons.modid, name = "Andrew's Modular Powersuits Addons", version = "@VERSION@", dependencies = "required-after:powersuits", acceptedMinecraftVersions = "[1.6,)")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false,
+@NetworkMod(clientSideRequired = true, serverSideRequired = true,
         clientPacketHandlerSpec = @SidedPacketHandler(channels = {"psa"}, packetHandler = AndrewPacketHandler.class),
         serverPacketHandlerSpec = @SidedPacketHandler(channels = {"psa"}, packetHandler = AndrewPacketHandler.class))
 public class ModularPowersuitsAddons {
@@ -68,10 +60,12 @@ public class ModularPowersuitsAddons {
 
     @EventHandler
     public void load(FMLInitializationEvent event) {
+        //Localization.loadCurrentLanguage();
         //book = new ItemBook(AddonConfig.manualID);
         AddonComponent.populate();
         AddonConfig.loadPowerModules();
-        Localization.loadCurrentLanguage();
+        ClientProxy.loadCurrentLanguage();
+        //Localization.loadCurrentLanguage();
         AddonConfig.loadOptions();
         proxy.registerHandlers();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
