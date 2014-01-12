@@ -1,6 +1,9 @@
 package andrew.powersuits.modules;
 
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/KineticGeneratorModule.java
 //
+=======
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/KineticGeneratorModule.java
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;

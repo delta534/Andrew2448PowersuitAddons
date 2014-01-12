@@ -15,6 +15,10 @@ import net.machinemuse.utils.MuseStringUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/OreScannerModule.java
+=======
+import net.minecraft.util.ChatMessageComponent;
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/OreScannerModule.java
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -90,14 +94,22 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
             ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
             if (AddonUtils.isServerSide()) {
                 if (AddonConfig.useAdvancedOreScannerMessage) {
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/OreScannerModule.java
                     player.addChatMessage("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
+=======
+                    player.sendChatToPlayer(ChatMessageComponent.createFromText("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/OreScannerModule.java
                             (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_X)+1)+"x"+
                             (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y)+1)+"x"+
                             (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z)+1)+
-                            " --- Energy used: "+ MuseStringUtils.formatNumberFromUnits(totalEnergy, "J"));
+                            " --- Energy used: "+ MuseStringUtils.formatNumberFromUnits(totalEnergy, "J")));
                 }
                 else {
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/OreScannerModule.java
                     player.addChatMessage("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue);
+=======
+                    player.sendChatToPlayer(ChatMessageComponent.createFromText("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/OreScannerModule.java
                 }
             }
         }

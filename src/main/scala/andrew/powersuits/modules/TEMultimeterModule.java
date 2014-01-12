@@ -1,6 +1,10 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonUtils;
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TEMultimeterModule.java
+=======
+
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TEMultimeterModule.java
 import cofh.api.tileentity.ITileInfo;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -12,6 +16,10 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TEMultimeterModule.java
+=======
+import net.minecraft.util.ChatMessageComponent;
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TEMultimeterModule.java
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
@@ -71,6 +79,7 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
             ((ITileInfo)tileEntity).sendTileInfoToPlayer(player);
             return true;
         }
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TEMultimeterModule.java
        /* if (tileEntity instanceof IPowerReceptor && ((IPowerReceptor)tileEntity).getPowerProvider() != null) {
             IPowerReceptor tilePowered = (IPowerReceptor)tileEntity;
             IPowerProvider tilePP = tilePowered.getPowerProvider();
@@ -79,6 +88,11 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
         }
         */
         return false;
+=======
+        	//TODO fix the multimeter somehow
+            player.sendChatToPlayer(ChatMessageComponent.createFromText("This Multimeter is currently broken due to TE 3.0"));
+            return true;
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TEMultimeterModule.java
     }
 
     public float minF(float a, float b) {

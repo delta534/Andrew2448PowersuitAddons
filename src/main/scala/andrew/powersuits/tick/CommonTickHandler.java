@@ -17,6 +17,18 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/tick/CommonTickHandler.java
+=======
+import net.machinemuse.api.ModuleManager;
+import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
+import net.machinemuse.utils.MuseItemUtils;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import java.util.EnumSet;
+import java.util.List;
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/tick/CommonTickHandler.java
 
 /**
  * Created by User: Andrew2448

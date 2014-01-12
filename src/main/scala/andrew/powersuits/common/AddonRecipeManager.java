@@ -44,6 +44,13 @@ public class AddonRecipeManager {
         ItemStack rottenFlesh = new ItemStack(Item.rottenFlesh);
         ItemStack sugar = new ItemStack(Item.sugar);
 
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/common/AddonRecipeManager.java
+=======
+        if (AddonConfig.useCheatyLeatherRecipe && ModCompatability.isThermalExpansionLoaded()) {
+            // Hehe ... a personal interest :)
+            //CraftingManagers.smelterManager.addRecipe(80, rottenFlesh, sugar, leather);
+        }
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/common/AddonRecipeManager.java
 
        if (ModCompatability.vanillaRecipesEnabled()) {
 

@@ -99,14 +99,14 @@ public class ClientProxy extends CommonProxy {
    /* @Override
     public void registerRenderers() {
         Minecraft mc = Minecraft.getMinecraft();
-        smallFontRenderer = new SmallFontRenderer(mc.gameSettings, "/font/default.png", mc.renderEngine, false);
+        smallFontRenderer = new SmallFontRenderer(mc.gameSettings, "textures/font/ascii.png", mc.renderEngine, false);
     }
 
     public static Document manual;
 
     public void readManuals() {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        manual = readManual("/mods/PowersuitAddons/resources/manuals/manual.xml", factory);
+        manual = readManual("/assets/PowersuitAddons/resources/manuals/manual.xml", factory);
         initManualPages();
     }
 
@@ -123,8 +123,13 @@ public class ClientProxy extends CommonProxy {
         }
     }
 
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/client/ClientProxy.java
 /*    public static Map<String, Class<? extends BookPage>> pageClasses = new HashMap<String, Class<? extends BookPage>>();
 
+=======
+    public static Map<String, Class<? extends BookPage>> pageClasses = new HashMap<String, Class<? extends BookPage>>();
+ 
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/client/ClientProxy.java
     public static void registerManualPage(String type, Class<? extends BookPage> clazz) {
         pageClasses.put(type, clazz);
     }

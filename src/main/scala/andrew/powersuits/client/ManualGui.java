@@ -8,9 +8,11 @@ import andrew.powersuits.book.page.BookPage;
 import andrew.powersuits.common.TextureLocations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiParticle;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,6 +23,10 @@ import org.w3c.dom.NodeList;
  * Created by User: Andrew2448
  * 12:11 AM 7/27/13
  */
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/client/ManualGui.java
+=======
+public class ManualGui  extends GuiScreen { 
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/client/ManualGui.java
 
 
 /*public class ManualGui  extends GuiScreen {
@@ -54,7 +60,6 @@ import org.w3c.dom.NodeList;
     @Override
     public void setWorldAndResolution (Minecraft minecraft, int w, int h)
     {
-        this.guiParticles = new GuiParticle(minecraft);
         this.mc = minecraft;
         this.width = w;
         this.height = h;
@@ -158,13 +163,17 @@ import org.w3c.dom.NodeList;
     {
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/client/ManualGui.java
         this.mc.renderEngine.bindTexture(net.minecraft.util.ResourceLocation, TextureLocations.MANUAL_LOC);
+=======
+        this.mc.renderEngine.bindTexture(new ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookright.png"));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/client/ManualGui.java
         int localWidth = (this.width) / 2;
         byte localHeight = 8;
         this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/mods/PowersuitAddons/resources/manuals/bookleft.png");
+        this.mc.renderEngine.bindTexture(new ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookleft.png"));
         localWidth = localWidth - this.bookImageWidth;
         this.drawTexturedModalRect(localWidth, localHeight, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
 

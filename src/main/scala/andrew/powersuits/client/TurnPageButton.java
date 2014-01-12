@@ -34,8 +34,12 @@ public class TurnPageButton extends GuiButton {
         {
             boolean var4 = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/client/TurnPageButton.java
             //par1Minecraft.renderEngine.ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookleft.png");
             final ResourceLocation bookLeft = new ResourceLocation("PowersuitAddons", "/mods/PowersuitAddons/resources/manuals/bookleft.png");
+=======
+            par1Minecraft.renderEngine.bindTexture(new ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookleft.png"));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/client/TurnPageButton.java
             int var5 = 0;
             int var6 = 192;
 

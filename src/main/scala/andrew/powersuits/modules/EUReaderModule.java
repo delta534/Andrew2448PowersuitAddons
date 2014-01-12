@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -86,7 +87,11 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 	        nbtData.setInteger("lastMeasuredTileEntityY", y);
 	        nbtData.setInteger("lastMeasuredTileEntityZ", z);
 
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/EUReaderModule.java
 	        player.addChatMessage("Starting new measurement");
+=======
+	        player.sendChatToPlayer(ChatMessageComponent.createFromText("Starting new measurement"));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/EUReaderModule.java
 	      } 
 	      else {
 	        long measurePeriod = currentMeasureTime - nbtData.getLong("lastMeasureTime");
@@ -97,7 +102,11 @@ public class EUReaderModule extends PowerModuleBase implements IRightClickModule
 
 	        DecimalFormat powerFormat = new DecimalFormat("0.##");
 
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/EUReaderModule.java
 	        player.addChatMessage("Measured power [EU/t]: " + powerFormat.format(deltaSunken) + " in " + powerFormat.format(deltaEmitted) + " out " + powerFormat.format(deltaSunken - deltaEmitted) + " gain" + " (avg. over " + measurePeriod + " ticks)");
+=======
+	        player.sendChatToPlayer(ChatMessageComponent.createFromText("Measured power [EU/t]: " + powerFormat.format(deltaSunken) + " in " + powerFormat.format(deltaEmitted) + " out " + powerFormat.format(deltaSunken - deltaEmitted) + " gain" + " (avg. over " + measurePeriod + " ticks)"));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/EUReaderModule.java
 	      }
 
 	      nbtData.setLong("lastTotalEnergyEmitted", currentTotalEnergyEmitted);

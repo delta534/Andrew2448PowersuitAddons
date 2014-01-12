@@ -17,6 +17,10 @@ import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TorchPlacerModule.java
+=======
+import net.minecraft.util.ChatMessageComponent;
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TorchPlacerModule.java
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
@@ -118,21 +122,37 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                         ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(item, TORCH_ENERGY_CONSUMPTION));
                     } else {
                         if (AddonUtils.isClientSide()) {
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TorchPlacerModule.java
                             player.addChatMessage("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+=======
+                            player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE)));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TorchPlacerModule.java
                         }
                     }
                 } else {
                     if (AddonUtils.isClientSide()) {
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TorchPlacerModule.java
                     	player.addChatMessage("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+=======
+                        player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE)));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TorchPlacerModule.java
                     }
                 }
             } else {
                 if (AddonUtils.isClientSide()) {
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TorchPlacerModule.java
                     player.addChatMessage("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
                 }
             }
         } else {
             player.addChatMessage("[MPSA] No torches!");
+=======
+                    player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE)));
+                }
+            }
+        } else {
+            player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] No torches!"));
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TorchPlacerModule.java
         }
     }
 

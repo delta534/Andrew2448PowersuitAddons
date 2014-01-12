@@ -1,10 +1,19 @@
 package andrew.powersuits.tick;
 
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/tick/ClientTickHandler.java
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.Iterator;
 import java.util.List;
 
+=======
+import andrew.powersuits.common.AddonConfig;
+import andrew.powersuits.common.AddonLogger;
+import andrew.powersuits.common.AddonUtils;
+import andrew.powersuits.modules.MagnetModule;
+import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.TickType;
+>>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/tick/ClientTickHandler.java
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.minecraft.client.Minecraft;
