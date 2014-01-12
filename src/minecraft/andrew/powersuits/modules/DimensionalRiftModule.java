@@ -1,6 +1,7 @@
 package andrew.powersuits.modules;
 
 import net.machinemuse.api.IModularItem;
+import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
 import net.machinemuse.utils.MuseCommonStrings;
@@ -56,7 +57,7 @@ public class DimensionalRiftModule extends PowerModuleBase implements IPlayerTic
 
     @Override
     public void onPlayerTickActive(EntityPlayer player, ItemStack item) {
-        if (MuseItemUtils.isModuleOnline(item.getTagCompound(), MODULE_DIMENSIONAL_RIFT)) {
+        if (ModuleManager.isModuleOnline(item.getTagCompound(), MODULE_DIMENSIONAL_RIFT)) {
             //player.
         }
     }

@@ -27,7 +27,7 @@ public class AddonRecipeManager {
 
         if (AddonConfig.useCheatyLeatherRecipe && ModCompatability.isThermalExpansionLoaded()) {
             // Hehe ... a personal interest :)
-            CraftingManagers.smelterManager.addRecipe(80, rottenFlesh, sugar, leather);
+            //CraftingManagers.smelterManager.addRecipe(80, rottenFlesh, sugar, leather);
         }
 
         if (ModCompatability.vanillaRecipesEnabled()) {

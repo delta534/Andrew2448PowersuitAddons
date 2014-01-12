@@ -139,25 +139,25 @@ public class RenderTickHandler implements ITickHandler {
         if (player != null) {
             ItemStack tool = player.getCurrentEquippedItem();
             if (tool != null && tool.getItem() instanceof ItemPowerFist) {
-                if (MuseItemUtils.itemHasActiveModule(tool, TorchPlacerModule.MODULE_TORCH_PLACER)) {
+                if (ModuleManager.itemHasActiveModule(tool, TorchPlacerModule.MODULE_TORCH_PLACER)) {
                     modules.add(TorchPlacerModule.MODULE_TORCH_PLACER);
                 }
             }
             ItemStack helmet = player.getCurrentArmor(3);
             if (helmet != null && helmet.getItem() instanceof ItemPowerArmorHelmet) {
-                if (MuseItemUtils.itemHasActiveModule(helmet, AutoFeederModule.MODULE_AUTO_FEEDER)) {
+                if (ModuleManager.itemHasActiveModule(helmet, AutoFeederModule.MODULE_AUTO_FEEDER)) {
                     modules.add(AutoFeederModule.MODULE_AUTO_FEEDER);
                 }
-                if (MuseItemUtils.itemHasActiveModule(helmet, ClockModule.MODULE_CLOCK)) {
+                if (ModuleManager.itemHasActiveModule(helmet, ClockModule.MODULE_CLOCK)) {
                     modules.add(ClockModule.MODULE_CLOCK);
                 }
-                if (MuseItemUtils.itemHasActiveModule(helmet, CompassModule.MODULE_COMPASS)) {
+                if (ModuleManager.itemHasActiveModule(helmet, CompassModule.MODULE_COMPASS)) {
                     modules.add(CompassModule.MODULE_COMPASS);
                 }
             }
             ItemStack chest = player.getCurrentArmor(2);
             if (chest != null && chest.getItem() instanceof ItemPowerArmorChestplate) {
-                if (MuseItemUtils.itemHasActiveModule(chest, WaterTankModule.MODULE_WATER_TANK)) {
+                if (ModuleManager.itemHasActiveModule(chest, WaterTankModule.MODULE_WATER_TANK)) {
                     modules.add(WaterTankModule.MODULE_WATER_TANK);
                 }
             }

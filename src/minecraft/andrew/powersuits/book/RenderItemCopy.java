@@ -6,7 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.RenderEngine;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -86,7 +87,7 @@ public class RenderItemCopy extends Render {
                     GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
                 }
 
-                this.loadTexture("/terrain.png");
+                this.bindTexture(new ResourceLocation("/terrain.png"));
                 float f7 = 0.25F;
                 int j = block.getRenderType();
 
@@ -130,7 +131,7 @@ public class RenderItemCopy extends Render {
                         GL11.glScalef(0.5F, 0.5F, 0.5F);
                     }
 
-                    this.loadTexture("/gui/items.png");
+                    this.bindTexture(new ResourceLocation("/gui/items.png"));
 
                     for (int k = 0; k < itemstack.getItem().getRenderPasses(itemstack.getItemDamage()); ++k)
                     {
@@ -169,11 +170,11 @@ public class RenderItemCopy extends Render {
 
                     if (itemstack.getItemSpriteNumber() == 0)
                     {
-                        this.loadTexture("/terrain.png");
+                        this.bindTexture(new ResourceLocation("/terrain.png"));
                     }
                     else
                     {
-                        this.loadTexture("/gui/items.png");
+                        this.bindTexture(new ResourceLocation("/gui/items.png"));
                     }
 
                     if (this.renderWithColor)
@@ -206,7 +207,8 @@ public class RenderItemCopy extends Render {
 
         if (par2Icon == null)
         {
-            par2Icon = this.renderManager.renderEngine.getMissingIcon(par1EntityItem.getEntityItem().getItemSpriteNumber());
+        	
+            par2Icon =par1EntityItem.getEntityItem().getIconIndex();
         }
 
         float f4 = par2Icon.getMinU();
@@ -256,21 +258,21 @@ public class RenderItemCopy extends Render {
 
                 if (itemstack.getItemSpriteNumber() == 0)
                 {
-                    this.loadTexture("/terrain.png");
+                    this.bindTexture(new ResourceLocation("/terrain.png"));
                 }
                 else
                 {
-                    this.loadTexture("/gui/items.png");
+                    this.bindTexture(new ResourceLocation("/gui/items.png"));
                 }
 
                 GL11.glColor4f(par5, par6, par7, 1.0F);
-                ItemRenderer.renderItemIn2D(tessellator, f5, f6, f4, f7, par2Icon.getSheetWidth(), par2Icon.getSheetHeight(), f12);
+                ItemRenderer.renderItemIn2D(tessellator, f5, f6, f4, f7, par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
 
                 if (itemstack != null && itemstack.hasEffect())
                 {
                     GL11.glDepthFunc(GL11.GL_EQUAL);
                     GL11.glDisable(GL11.GL_LIGHTING);
-                    this.renderManager.renderEngine.bindTexture("%blur%/misc/glint.png");
+                    this.renderManager.renderEngine.bindTexture(new ResourceLocation("%blur%/misc/glint.png"));
                     GL11.glEnable(GL11.GL_BLEND);
                     GL11.glBlendFunc(GL11.GL_SRC_COLOR, GL11.GL_ONE);
                     float f13 = 0.76F;
@@ -335,7 +337,7 @@ public class RenderItemCopy extends Render {
     /**
      * Renders the item's icon or block into the UI at the specified position.
      */
-    public void renderItemIntoGUI (SmallFontRenderer par1SmallFontRenderer, RenderEngine par2RenderEngine, ItemStack par3ItemStack, int par4, int par5)
+    public void renderItemIntoGUI (SmallFontRenderer par1SmallFontRenderer, TextureManager par2RenderEngine, ItemStack par3ItemStack, int par4, int par5)
     {
         int k = par3ItemStack.itemID;
         int l = par3ItemStack.getItemDamage();
@@ -347,7 +349,7 @@ public class RenderItemCopy extends Render {
         Block block = (k < Block.blocksList.length ? Block.blocksList[k] : null);
         if (par3ItemStack.getItemSpriteNumber() == 0 && block != null && RenderBlocks.renderItemIn3d(Block.blocksList[k].getRenderType()))
         {
-            par2RenderEngine.bindTexture("/terrain.png");
+            par2RenderEngine.bindTexture(new ResourceLocation("/terrain.png"));
             GL11.glPushMatrix();
             GL11.glTranslatef((float) (par4 - 2), (float) (par5 + 3), -3.0F + this.zLevel);
             GL11.glScalef(10.0F, 10.0F, 10.0F);
@@ -378,7 +380,7 @@ public class RenderItemCopy extends Render {
             if (Item.itemsList[k].requiresMultipleRenderPasses())
             {
                 GL11.glDisable(GL11.GL_LIGHTING);
-                par2RenderEngine.bindTexture(par3ItemStack.getItemSpriteNumber() == 0 ? "/terrain.png" : "/gui/items.png");
+                par2RenderEngine.bindTexture(new ResourceLocation(par3ItemStack.getItemSpriteNumber() == 0 ? "/terrain.png" : "/gui/items.png"));
 
                 for (j1 = 0; j1 < Item.itemsList[k].getRenderPasses(l); ++j1)
                 {
@@ -401,19 +403,19 @@ public class RenderItemCopy extends Render {
             else
             {
                 GL11.glDisable(GL11.GL_LIGHTING);
-
                 if (par3ItemStack.getItemSpriteNumber() == 0)
                 {
-                    par2RenderEngine.bindTexture("/terrain.png");
+                    par2RenderEngine.bindTexture(new ResourceLocation("/terrain.png"));
                 }
                 else
                 {
-                    par2RenderEngine.bindTexture("/gui/items.png");
+                    par2RenderEngine.bindTexture(new ResourceLocation("/gui/items.png"));
                 }
 
                 if (icon == null)
                 {
-                    icon = par2RenderEngine.getMissingIcon(par3ItemStack.getItemSpriteNumber());
+                	
+                    icon = par3ItemStack.getIconIndex();
                 }
 
                 j1 = Item.itemsList[k].getColorFromItemStack(par3ItemStack, 0);
@@ -437,7 +439,7 @@ public class RenderItemCopy extends Render {
     /**
      * Render the item's icon or block into the GUI, including the glint effect.
      */
-    public void renderItemAndEffectIntoGUI (SmallFontRenderer par1SmallFontRenderer, RenderEngine par2RenderEngine, ItemStack par3ItemStack, int par4, int par5)
+    public void renderItemAndEffectIntoGUI (SmallFontRenderer par1SmallFontRenderer, TextureManager par2RenderEngine, ItemStack par3ItemStack, int par4, int par5)
     {
         if (par3ItemStack != null)
         {
@@ -451,7 +453,7 @@ public class RenderItemCopy extends Render {
                 GL11.glDepthFunc(GL11.GL_GREATER);
                 GL11.glDisable(GL11.GL_LIGHTING);
                 GL11.glDepthMask(false);
-                par2RenderEngine.bindTexture("%blur%/misc/glint.png");
+                par2RenderEngine.bindTexture(new ResourceLocation("%blur%/misc/glint.png"));
                 this.zLevel -= 50.0F;
                 GL11.glEnable(GL11.GL_BLEND);
                 GL11.glBlendFunc(GL11.GL_DST_COLOR, GL11.GL_DST_COLOR);
@@ -506,12 +508,12 @@ public class RenderItemCopy extends Render {
      * Renders the item's overlay information. Examples being stack count or damage on top of the item's image at the
      * specified position.
      */
-    public void renderItemOverlayIntoGUI (SmallFontRenderer par1SmallFontRenderer, RenderEngine par2RenderEngine, ItemStack par3ItemStack, int par4, int par5)
+    public void renderItemOverlayIntoGUI (SmallFontRenderer par1SmallFontRenderer, TextureManager par2RenderEngine, ItemStack par3ItemStack, int par4, int par5)
     {
         this.renderItemOverlayIntoGUI(par1SmallFontRenderer, par2RenderEngine, par3ItemStack, par4, par5, (String) null);
     }
 
-    public void renderItemOverlayIntoGUI (SmallFontRenderer par1SmallFontRenderer, RenderEngine par2RenderEngine, ItemStack par3ItemStack, int par4, int par5, String par6Str)
+    public void renderItemOverlayIntoGUI (SmallFontRenderer par1SmallFontRenderer, TextureManager par2RenderEngine, ItemStack par3ItemStack, int par4, int par5, String par6Str)
     {
         if (par3ItemStack != null)
         {
@@ -632,4 +634,10 @@ public class RenderItemCopy extends Render {
             ret = 4;
         return ret;
     }
+
+	@Override
+	protected ResourceLocation getEntityTexture(Entity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

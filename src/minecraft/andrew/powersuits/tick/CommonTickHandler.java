@@ -9,6 +9,7 @@ import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import net.machinemuse.api.ModuleManager;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.item.EntityItem;
@@ -33,7 +34,7 @@ public class CommonTickHandler implements ITickHandler {
             player = (EntityPlayer)tickData[0];
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
-                if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
+                if (ModuleManager.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
                     if (AddonConfig.useDebugMode) {
                         AddonLogger.logDebug("Entering server tick handler for magnet.");
                     }

@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonComponent;
-import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
@@ -13,6 +12,7 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -47,7 +47,7 @@ public class SolarGeneratorModule extends PowerModuleBase implements IPlayerTick
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.solarGenerator.name");
+        return StatCollector.translateToLocal("module.solarGenerator.name");
     }
 
     @Override

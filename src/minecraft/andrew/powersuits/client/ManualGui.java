@@ -5,9 +5,11 @@ import andrew.powersuits.book.SmallFontRenderer;
 import andrew.powersuits.book.page.BookPage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiParticle;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,7 +20,7 @@ import org.w3c.dom.NodeList;
  * Created by User: Andrew2448
  * 12:11 AM 7/27/13
  */
-public class ManualGui  extends GuiScreen {
+public class ManualGui  extends GuiScreen { 
 
     ItemStack itemstackBook;
     Document manual;
@@ -49,7 +51,6 @@ public class ManualGui  extends GuiScreen {
     @Override
     public void setWorldAndResolution (Minecraft minecraft, int w, int h)
     {
-        this.guiParticles = new GuiParticle(minecraft);
         this.mc = minecraft;
         this.width = w;
         this.height = h;
@@ -153,13 +154,13 @@ public class ManualGui  extends GuiScreen {
     {
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/mods/PowersuitAddons/resources/manuals/bookright.png");
+        this.mc.renderEngine.bindTexture(new ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookright.png"));
         int localWidth = (this.width) / 2;
         byte localHeight = 8;
         this.drawTexturedModalRect(localWidth, localHeight, 0, 0, this.bookImageWidth, this.bookImageHeight);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/mods/PowersuitAddons/resources/manuals/bookleft.png");
+        this.mc.renderEngine.bindTexture(new ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookleft.png"));
         localWidth = localWidth - this.bookImageWidth;
         this.drawTexturedModalRect(localWidth, localHeight, 256 - this.bookImageWidth, 0, this.bookImageWidth, this.bookImageHeight);
 

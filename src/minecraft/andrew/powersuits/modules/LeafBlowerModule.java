@@ -1,6 +1,5 @@
 package andrew.powersuits.modules;
 
-import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -14,6 +13,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -53,10 +53,9 @@ public class LeafBlowerModule extends PowerModuleBase implements IRightClickModu
     public String getDataName() {
         return MODULE_LEAF_BLOWER;
     }
-
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.leafBlower.name");
+        return StatCollector.translateToLocal("module.leafBlower.name");
     }
 
     @Override

@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -13,6 +12,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -50,7 +50,7 @@ public class TreetapModule extends PowerModuleBase implements IRightClickModule 
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.treetap.name");
+        return StatCollector.translateToLocal("module.treetap.name");
     }
 
     @Override

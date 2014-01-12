@@ -1,7 +1,6 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
@@ -16,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class WaterTankModule extends PowerModuleBase implements IPlayerTickModul
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.waterTank.name");
+        return StatCollector.translateToLocal("module.waterTank.name");
     }
 
     @Override

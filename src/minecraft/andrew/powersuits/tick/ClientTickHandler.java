@@ -6,6 +6,7 @@ import andrew.powersuits.common.AddonUtils;
 import andrew.powersuits.modules.MagnetModule;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
+import net.machinemuse.api.ModuleManager;
 import net.machinemuse.powersuits.item.ItemPowerArmorChestplate;
 import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.client.Minecraft;
@@ -39,7 +40,7 @@ public class ClientTickHandler implements ITickHandler {
             EntityClientPlayerMP player = mc.thePlayer;
             ItemStack torso = player.getCurrentArmor(2);
             if (torso != null && torso.getItem() instanceof ItemPowerArmorChestplate) {
-                if (MuseItemUtils.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
+                if (ModuleManager.itemHasActiveModule(torso, MagnetModule.MODULE_MAGNET)) {
                     if (AddonConfig.useDebugMode) {
                         AddonLogger.logDebug("Entering client tick handler for magnet.");
                     }

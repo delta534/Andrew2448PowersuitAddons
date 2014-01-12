@@ -2,7 +2,6 @@ package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IPlayerTickModule;
@@ -18,6 +17,8 @@ import net.minecraft.block.BlockTorch;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -55,7 +56,7 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.torchPlacer.name");
+        return StatCollector.translateToLocal("module.torchPlacer.name");
     }
 
     @Override
@@ -118,21 +119,21 @@ public class TorchPlacerModule extends PowerModuleBase implements IToggleableMod
                         ElectricItemUtils.drainPlayerEnergy(player, ModuleManager.computeModularProperty(item, TORCH_ENERGY_CONSUMPTION));
                     } else {
                         if (AddonUtils.isClientSide()) {
-                            player.sendChatToPlayer("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                            player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE)));
                         }
                     }
                 } else {
                     if (AddonUtils.isClientSide()) {
-                        player.sendChatToPlayer("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                        player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE)));
                     }
                 }
             } else {
                 if (AddonUtils.isClientSide()) {
-                    player.sendChatToPlayer("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE));
+                    player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] Cannot place a torch here. Torch level: " + AddonUtils.getTorchLevel(item) + "/" + (int) ModuleManager.computeModularProperty(item, MAX_TORCH_STORAGE)));
                 }
             }
         } else {
-            player.sendChatToPlayer("[MPSA] No torches!");
+            player.sendChatToPlayer(ChatMessageComponent.createFromText("[MPSA] No torches!"));
         }
     }
 

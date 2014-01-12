@@ -4,6 +4,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -32,7 +34,7 @@ public class TurnPageButton extends GuiButton {
         {
             boolean var4 = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            par1Minecraft.renderEngine.bindTexture("/mods/PowersuitAddons/resources/manuals/bookleft.png");
+            par1Minecraft.renderEngine.bindTexture(new ResourceLocation("/mods/PowersuitAddons/resources/manuals/bookleft.png"));
             int var5 = 0;
             int var6 = 192;
 

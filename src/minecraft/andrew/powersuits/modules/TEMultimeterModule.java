@@ -1,9 +1,7 @@
 package andrew.powersuits.modules;
 
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.Localization;
-import buildcraft.api.power.IPowerProvider;
-import buildcraft.api.power.IPowerReceptor;
+
 import cofh.api.tileentity.ITileInfo;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -15,6 +13,8 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -50,7 +50,7 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.teMultimeter.name");
+        return StatCollector.translateToLocal("module.teMultimeter.name");
     }
 
     @Override
@@ -74,13 +74,9 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
             ((ITileInfo)tileEntity).sendTileInfoToPlayer(player);
             return true;
         }
-        if (tileEntity instanceof IPowerReceptor && ((IPowerReceptor)tileEntity).getPowerProvider() != null) {
-            IPowerReceptor tilePowered = (IPowerReceptor)tileEntity;
-            IPowerProvider tilePP = tilePowered.getPowerProvider();
-            player.sendChatToPlayer("Energy Requested: " + minF(tilePowered.powerRequest(ForgeDirection.UNKNOWN), tilePP.getMaxEnergyStored() - tilePP.getEnergyStored()));
+        	//TODO fix the multimeter somehow
+            player.sendChatToPlayer(ChatMessageComponent.createFromText("This Multimeter is currently broken due to TE 3.0"));
             return true;
-        }
-        return false;
     }
 
     public float minF(float a, float b) {

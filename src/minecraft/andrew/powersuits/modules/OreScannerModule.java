@@ -3,7 +3,6 @@ package andrew.powersuits.modules;
 import andrew.powersuits.common.AddonComponent;
 import andrew.powersuits.common.AddonConfig;
 import andrew.powersuits.common.AddonUtils;
-import andrew.powersuits.common.Localization;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.ModuleManager;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
@@ -16,6 +15,8 @@ import net.machinemuse.utils.MuseStringUtils;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChatMessageComponent;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.oredict.OreDictionary;
@@ -90,14 +91,14 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
             ElectricItemUtils.drainPlayerEnergy(player, totalEnergy);
             if (AddonUtils.isServerSide()) {
                 if (AddonConfig.useAdvancedOreScannerMessage) {
-                    player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
+                    player.sendChatToPlayer(ChatMessageComponent.createFromText("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue+"\nSearch radius: "+
                             (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_X)+1)+"x"+
                             (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Y)+1)+"x"+
                             (2*(int)ModuleManager.computeModularProperty(itemStack, ORE_SCANNER_RADIUS_Z)+1)+
-                            " --- Energy used: "+ MuseStringUtils.formatNumberFromUnits(totalEnergy, "J"));
+                            " --- Energy used: "+ MuseStringUtils.formatNumberFromUnits(totalEnergy, "J")));
                 }
                 else {
-                    player.sendChatToPlayer("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue);
+                    player.sendChatToPlayer(ChatMessageComponent.createFromText("[Ore Scanner] Total ore value: "+totalValue+" --- Most valuable: "+highestValue));
                 }
             }
         }
@@ -163,7 +164,7 @@ public class OreScannerModule extends PowerModuleBase implements IRightClickModu
 
     @Override
     public String getLocalizedName() {
-        return Localization.translate("module.oreScanner.name");
+        return StatCollector.translateToLocal("module.oreScanner.name");
     }
 
 	@Override

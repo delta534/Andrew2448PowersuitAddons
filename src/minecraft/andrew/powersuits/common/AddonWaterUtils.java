@@ -16,7 +16,7 @@ public class AddonWaterUtils {
     public static double getPlayerWater(EntityPlayer player) {
         double water = 0;
         for (ItemStack stack : MuseItemUtils.getModularItemsInInventory(player)) {
-            if (stack.getItem() instanceof ItemPowerArmorChestplate && MuseItemUtils.itemHasActiveModule(stack, WaterTankModule.MODULE_WATER_TANK)) {
+            if (stack.getItem() instanceof ItemPowerArmorChestplate && ModuleManager.itemHasActiveModule(stack, WaterTankModule.MODULE_WATER_TANK)) {
                 water = AddonUtils.getWaterLevel(stack);
             }
         }
@@ -26,7 +26,7 @@ public class AddonWaterUtils {
     public static double getMaxWater(EntityPlayer player) {
         double water = 0;
         for (ItemStack stack : MuseItemUtils.getModularItemsInInventory(player)) {
-            if (stack.getItem() instanceof ItemPowerArmorChestplate && MuseItemUtils.itemHasActiveModule(stack, WaterTankModule.MODULE_WATER_TANK)) {
+            if (stack.getItem() instanceof ItemPowerArmorChestplate && ModuleManager.itemHasActiveModule(stack, WaterTankModule.MODULE_WATER_TANK)) {
                 water = ModuleManager.computeModularProperty(stack, WaterTankModule.WATER_TANK_SIZE);
             }
         }

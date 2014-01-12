@@ -3,6 +3,7 @@ package andrew.powersuits.client;
 import andrew.powersuits.container.PortableCraftingContainer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import org.lwjgl.opengl.GL11;
@@ -28,9 +29,8 @@ public class PortableCraftingGui extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
 
         // TODO Variable-ize this
-        int var4 = this.mc.renderEngine.getTexture("/gui/crafting.png");
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/gui/crafting.png");
+        this.mc.renderEngine.bindTexture(new ResourceLocation("/gui/crafting.png"));;
         int var5 = (this.width - this.xSize) / 2;
         int var6 = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
