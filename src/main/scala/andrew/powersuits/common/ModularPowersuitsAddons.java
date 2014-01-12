@@ -60,17 +60,13 @@ public class ModularPowersuitsAddons {
 
     @EventHandler
     public void load(FMLInitializationEvent event) {
-        //Localization.loadCurrentLanguage();
         //book = new ItemBook(AddonConfig.manualID);
         AddonComponent.populate();
         AddonConfig.loadPowerModules();
         ClientProxy.loadCurrentLanguage();
-        //Localization.loadCurrentLanguage();
         AddonConfig.loadOptions();
         proxy.registerHandlers();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
-        //AddonRecipeManager.oreRegistration();
-        //AddonRecipeManager.loadTERecipes();
         AddonRecipeManager.cheatyLeather();
         AddonRecipeManager.addRecipes();
 

@@ -1,19 +1,15 @@
 package andrew.powersuits.common;
 
 
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.machinemuse.numina.recipe.JSONRecipeList;
 import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class AddonRecipeManager {
@@ -21,25 +17,15 @@ public class AddonRecipeManager {
     public static void cheatyLeather() {
         if (AddonConfig.useCheatyLeatherRecipe && ModCompatability.isThermalExpansionLoaded()){
 
-        cofh.util.ThermalExpansionHelper.addFurnaceRecipe(1350, new ItemStack(Item.rottenFlesh), new ItemStack(Item.leather));
+            NBTTagCompound toSend = new NBTTagCompound();
+            toSend.setInteger("energy", 1350);
+            toSend.setCompoundTag("input", new NBTTagCompound());
+            toSend.setCompoundTag("output", new NBTTagCompound());
+
+            new ItemStack(Item.rottenFlesh).writeToNBT(toSend.getCompoundTag("input"));
+            new ItemStack(Item.leather).writeToNBT(toSend.getCompoundTag("output"));
+            FMLInterModComms.sendMessage("ThermalExpansion", "FurnaceRecipe", toSend);
         }
-    }
-
-    public static void oreRegistration() {
-
-        OreDictionary.registerOre("ingotIron", new ItemStack(Item.ingotIron));
-        OreDictionary.registerOre("blockGlass", new ItemStack(Block.glass));
-        OreDictionary.registerOre("blockLapis", new ItemStack(Block.blockLapis));
-
-
-    }
-
-    public static void loadTERecipes () {
-
-            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, new Object[]{"GGG", "CLC", " E ", Character.valueOf('G'), "blockGlass", Character.valueOf('C'), "conduitEnergyHardened", Character.valueOf('L'), "blockLapis", Character.valueOf('E'), "powerCoilSilver"}));
-            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, true, new Object[] {"IGI", "SSS", "IGI", Character.valueOf('I'), "ingotIron", Character.valueOf('G'), "powerCoilGold", Character.valueOf('S'), "componentSolenoid" }));
-            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, true, new Object[] {" O ", "GMS", " E ", Character.valueOf('G'), "powerCoilGold", Character.valueOf('M'), "gearTin", Character.valueOf('S'), "powerCoilSilver", Character.valueOf('O'), "componentSolenoid", Character.valueOf('E'), "powerCoilElectrum" }));
-
     }
 
 
@@ -122,9 +108,27 @@ public class AddonRecipeManager {
             //===========================================================================================================================
         }
 
+        if (ModCompatability.ThermalExpansionRecipesEnabled() && ModCompatability.isThermalExpansionLoaded()) {
+            ItemStack pneumaticServo = GameRegistry.findItemStack("ThermalExpansion", "pneumaticServo", 1);
+            ItemStack machineFrame = GameRegistry.findItemStack("ThermalExpansion", "machineFrame", 1);
+            ItemStack powerCoilGold = GameRegistry.findItemStack("ThermalExpansion", "powerCoilGold", 1);
+            ItemStack powerCoilSilver = GameRegistry.findItemStack("ThermalExpansion", "powerCoilSilver", 1);
+            ItemStack powerCoilElectrum = GameRegistry.findItemStack("ThermalExpansion", "powerCoilElectrum", 1);
+            ItemStack gearCopper = GameRegistry.findItemStack("ThermalExpansion", "gearCopper", 1);
+            ItemStack gearTin = GameRegistry.findItemStack("ThermalExpansion", "gearTin", 1);
+            ItemStack gearInvar = GameRegistry.findItemStack("ThermalExpansion", "gearInvar", 1);
+            ItemStack compressedSawdust = GameRegistry.findItemStack("ThermalExpansion", "sawdustCompressed", 1);
+            ItemStack energyFrameFull = GameRegistry.findItemStack("ThermalExpansion", "energyFrameFull", 1);
+            ItemStack conduitEnergy = GameRegistry.findItemStack("ThermalExpansion", "conduitEnergyReinforcedEmpty", 1);
+            ItemStack teleportFrameFull = GameRegistry.findItemStack("ThermalExpansion", "teleportBase", 1);
+            ItemStack multimeter = GameRegistry.findItemStack("ThermalExpansion", "multimeter", 1);
 
-
-
-
+            //===========================================================================================================================
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.solarPanel, true, "GGG", "CLC", " E ", 'G', glass, 'L', new ItemStack(Block.blockLapis), 'C', conduitEnergy, 'E', powerCoilSilver));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.magnet, "ICI", "SSS", "ICI", 'I', ironIngot, 'C', powerCoilGold, 'S', ItemComponent.solenoid));
+            GameRegistry.addRecipe(new ShapedOreRecipe(AddonComponent.computerChip, " O ", "GMS", " E ", 'E', powerCoilElectrum, 'S', powerCoilSilver, 'G', powerCoilGold, 'M', multimeter, 'O', ItemComponent.solenoid));
+            //===========================================================================================================================
+        }
     }
-}	
+
+}
