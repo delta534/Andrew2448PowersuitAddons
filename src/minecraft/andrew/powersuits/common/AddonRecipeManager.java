@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import thermalexpansion.api.crafting.CraftingManagers;
+
 
 public class AddonRecipeManager {
     public static void addRecipes() {

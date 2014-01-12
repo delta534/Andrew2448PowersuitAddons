@@ -210,10 +210,6 @@
     <mkdir dir="${mcpsrc.dir}/thermalexpansion/api/core"/>
     <move file="${download.dir}/thermalexpansion/api/item/ItemRegistry.java"
               todir="${mcpsrc.dir}/thermalexpansion/api/item"/>
-    <mkdir dir="${mcpsrc.dir}/thermalexpansion/api/crafting"/>
-    <move todir="${mcpsrc.dir}/thermalexpansion/api/crafting">
-      <fileset dir="${download.dir}/thermalexpansion/api/crafting/"/>
-    </move>
     <get-api filename="CoFHCore-API.zip" into="${download.dir}"/>
     <mkdir dir="${mcpsrc.dir}/cofh/api/tileentity"/>
     <move file="${download.dir}/cofh/api/tileentity/IReconfigurableFacing.java"
@@ -310,16 +306,16 @@
     <replace dir="${mcpsrc.dir}/andrew/powersuits/common" token="0.4.0" value="${fullversion}"/>
     <replace dir="${main.dir}" token="0.4.0" value="${fullversion}"/>
     <copy todir="${mcpsrc.dir}/net/minecraft/src" file="${download.dir}/MachineMusePowersuits/src/minecraft/net/minecraft/src/ModelPlayer.java"/>
-    <!--I should do a pull request about this, but it is so minor-->
+    <!--I should do a pull request about this, but it is so minor and is an artifact of my build process-->
     <delete file="${mcpsrc.dir}/${mpspatch.dir}/ChunkProviderEntity.java" /> 
     <copy file="${src.dir}/minecraft/${mpspatch.dir}/ChunkProviderEntity.java" todir="${mcpsrc.dir}/${mpspatch.dir}"/>
     <echo message="Applying Scala patches..."/>
     <echo message="Applying Scala mcp patch..."/>
     <get src="http://machinemuse.minecraftforge.net/scalapatch.sh" dest="${mcp.dir}/conf/scalapatch.sh"/>
     <!--<unzip src="${download.dir}/scalapatch.zip" dest="${mcp.dir}"/>-->
-    <exec dir="${mcp.dir}/conf" executable="sh" osfamily="unix" failonerror="false">
-      <arg value="scalapatch.sh"/>
-    </exec>
+    <copy file="${mcp.dir}/conf/mcp.cfg" tofile="${mcp.dir}/conf/mcp.cfg.bak" />
+    <replace file="${mcp.dir}/conf/mcp.cfg" token="-target 1.6 -classpath &quot;{classpath}&quot;" 
+    value="-target 1.6 -classpath &quot;{classpath}:{outpath}&quot;"/>
   </target>
   <!-- ============================================================Recompile================================================================================= -->
   <target name="recompile">

@@ -2,6 +2,7 @@ package andrew.powersuits.common;
 
 import com.google.common.base.Charsets;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringTranslate;
 
@@ -14,11 +15,11 @@ import java.util.Properties;
  * 1:34 PM 7/30/13
  */
 public class Localization {
-    public static final String LANG_PATH = "/mods/PowersuitAddons/lang/";
+    public static final String LANG_PATH = "powersuitAddons:lang/";
     public static String extractedLanguage = "";
 
     public static String getCurrentLanguage() {
-        return StringTranslate.getInstance().getCurrentLanguage();
+        return Minecraft.getMinecraft().gameSettings.language;
     }
 
     public static void loadCurrentLanguage() {

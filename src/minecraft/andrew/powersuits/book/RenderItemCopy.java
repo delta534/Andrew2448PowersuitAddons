@@ -268,7 +268,7 @@ public class RenderItemCopy extends Render {
                 GL11.glColor4f(par5, par6, par7, 1.0F);
                 ItemRenderer.renderItemIn2D(tessellator, f5, f6, f4, f7, par2Icon.getIconWidth(), par2Icon.getIconHeight(), f12);
 
-                if (itemstack != null && itemstack.hasEffect())
+                if (itemstack != null && itemstack.hasEffect(0))
                 {
                     GL11.glDepthFunc(GL11.GL_EQUAL);
                     GL11.glDisable(GL11.GL_LIGHTING);
@@ -448,7 +448,7 @@ public class RenderItemCopy extends Render {
                 this.renderItemIntoGUI(par1SmallFontRenderer, par2RenderEngine, par3ItemStack, par4, par5);
             }
 
-            if (par3ItemStack.hasEffect())
+            if (par3ItemStack.hasEffect(0))
             {
                 GL11.glDepthFunc(GL11.GL_GREATER);
                 GL11.glDisable(GL11.GL_LIGHTING);

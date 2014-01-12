@@ -4,14 +4,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Map;// to force a list of deprecations
 
 /**
  * Created by User: Andrew2448
  * 2:25 PM 7/27/13
  */
 public class BookRegistry {
-
     public static Map<String, ItemStack> manualIcons = new HashMap<String, ItemStack>();
     public static ItemStack defaultStack = new ItemStack(Item.ingotIron);
 

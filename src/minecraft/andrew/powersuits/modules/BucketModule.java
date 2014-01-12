@@ -18,7 +18,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +32,8 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
     public static final String MODULE_BUCKET = "Bucket";
     public static final ItemStack bucket = new ItemStack(Item.bucketEmpty);
     private boolean isEmpty = true;
-    public LiquidStack contained = null;
-    public ArrayList<LiquidStack> list = new ArrayList<LiquidStack>();
+    public FluidStack contained = null;
+    public ArrayList<FluidStack> list = new ArrayList<FluidStack>();
 
     public BucketModule(List<IModularItem> validItems) {
         super(validItems);
@@ -106,7 +107,7 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
                             return;
                         }
                         if (isEmpty) {
-                            contained = new LiquidStack(Block.waterStill.blockID, 1);
+                            contained = new FluidStack(Block.waterStill.blockID, 1);
                             AddonUtils.setLiquid(item, "Water");
                             isEmpty = false;
                         }
@@ -119,7 +120,7 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
                         }
 
                         if (isEmpty) {
-                            contained = new LiquidStack(Block.lavaStill.blockID, 1);
+                            contained = new FluidStack(Block.lavaStill.blockID, 1);
                             AddonUtils.setLiquid(item, "Lava");
                             isEmpty = false;
                         }
@@ -170,14 +171,14 @@ public class BucketModule extends PowerModuleBase implements IRightClickModule {
             return false;
         }
         else {
-            if (world.provider.isHellWorld && contained.asItemStack().getItem().itemID == Block.waterMoving.blockID) {
+            if (world.provider.isHellWorld && contained.fluidID == Block.waterMoving.blockID) {
                 world.playSoundEffect(par2 + 0.5D, par4 + 0.5D, par6 + 0.5D, "random.fizz", 0.5F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
                 for (int l = 0; l < 8; ++l) {
                     world.spawnParticle("largesmoke", (double)x + Math.random(), (double)y + Math.random(), (double)z + Math.random(), 0.0D, 0.0D, 0.0D);
                 }
             }
             else {
-                int i = contained.asItemStack().getItem().itemID;
+                int i = contained.fluidID;
                 world.setBlock(x, y, z, i, 0, 3);
             }
             return true;
