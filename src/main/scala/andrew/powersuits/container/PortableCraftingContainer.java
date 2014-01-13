@@ -15,11 +15,7 @@ public class PortableCraftingContainer extends ContainerWorkbench {
         return true;
     }
 
-<<<<<<< HEAD:src/main/scala/andrew/powersuits/container/PortableCraftingContainer.java
     public void onCraftGuiClosed(EntityPlayer player) {
         super.onContainerClosed(player);
     }
-=======
-
->>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/container/PortableCraftingContainer.java
 }

@@ -42,20 +42,11 @@ public class PortableCraftingGui extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
     {
 
-<<<<<<< HEAD:src/main/scala/andrew/powersuits/client/PortableCraftingGui.java
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(GUI_Loc);
         int var5 = (width - xSize) / 2;
         int var6 = (height - ySize) / 2;
         this.drawTexturedModalRect(var5, var6, 0, 0, xSize, ySize);
-=======
-        // TODO Variable-ize this
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(new ResourceLocation("gui/crafting.png"));;
-        int var5 = (this.width - this.xSize) / 2;
-        int var6 = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
->>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/client/PortableCraftingGui.java
     }
 
     @Override
