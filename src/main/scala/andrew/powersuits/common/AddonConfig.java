@@ -14,11 +14,14 @@ import net.machinemuse.powersuits.item.ItemComponent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTorch;
 <<<<<<< HEAD:src/main/scala/andrew/powersuits/common/AddonConfig.java
+<<<<<<< HEAD:src/main/scala/andrew/powersuits/common/AddonConfig.java
 import net.minecraftforge.common.Configuration;
 =======
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.client.Minecraft;
 >>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/common/AddonConfig.java
+=======
+>>>>>>> Fixes the multimeter, with a minor unavoidable issue.:src/minecraft/andrew/powersuits/common/AddonConfig.java
 
 import java.io.*;
 import java.util.Arrays;
@@ -33,7 +36,7 @@ public class AddonConfig extends Config {
 
     public static BlockTorch torch;
 
-    public static final String LANG_PATH = "powersuitaddons:lang/";
+    public static final String LANG_PATH = "/mods/PowersuitAddons/lang/";
     public static String[] languages = {"en_US", "de_DE"};
     public static File configFolder;
     private static Configuration config;
@@ -114,9 +117,8 @@ public class AddonConfig extends Config {
 
     public static void extractLang(String[] langauges) {
         for (String lang : langauges) {
-        try {
-            InputStream inputStream = Minecraft.getMinecraft().getResourceManager().getResource(new ResourceLocation(LANG_PATH + lang + ".lang")).getInputStream();
-            
+            InputStream inputStream = ModularPowersuitsAddons.INSTANCE.getClass().getResourceAsStream(LANG_PATH + lang + ".lang");
+            try {
                 File file = new File(configFolder.getAbsolutePath() + "/lang/" + lang + ".lang");
                 if (!file.exists()) {
                     file.getParentFile().mkdirs();

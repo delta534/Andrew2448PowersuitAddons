@@ -1,13 +1,14 @@
 package andrew.powersuits.modules;
 
+import andrew.powersuits.common.AddonLogger;
 import andrew.powersuits.common.AddonUtils;
-<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TEMultimeterModule.java
-=======
-
->>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TEMultimeterModule.java
 import cofh.api.tileentity.ITileInfo;
+import cofh.api.block.IBlockDebug;
+import cofh.api.block.IBlockInfo;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.machinemuse.api.IModularItem;
 import net.machinemuse.api.moduletrigger.IRightClickModule;
+import net.machinemuse.numina.recipe.ItemNameMappings;
 import net.machinemuse.powersuits.common.ModCompatability;
 import net.machinemuse.powersuits.item.ItemComponent;
 import net.machinemuse.powersuits.powermodule.PowerModuleBase;
@@ -16,13 +17,11 @@ import net.machinemuse.utils.MuseItemUtils;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TEMultimeterModule.java
-=======
-import net.minecraft.util.ChatMessageComponent;
->>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TEMultimeterModule.java
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
+import net.minecraftforge.common.ForgeDirection;
+import java.util.ArrayList;
+import net.minecraft.item.Item;
 import java.util.List;
 
 /**
@@ -31,11 +30,12 @@ import java.util.List;
  */
 public class TEMultimeterModule extends PowerModuleBase implements IRightClickModule {
     public static final String MODULE_TE_MULTIMETER = "TE Multimeter";
-
+    private ItemStack multiMeter;
     public TEMultimeterModule(List<IModularItem> validItems) {
         super(validItems);
         addInstallCost(MuseItemUtils.copyAndResize(ItemComponent.controlCircuit, 1));
-        addInstallCost(ModCompatability.getThermexItem("multimeter", 1));
+        multiMeter=GameRegistry.findItemStack("ThermalExpansion", "multimeter", 1);
+        addInstallCost(multiMeter);
     }
 
     @Override
@@ -71,28 +71,8 @@ public class TEMultimeterModule extends PowerModuleBase implements IRightClickMo
 
     @Override
     public boolean onItemUseFirst(ItemStack itemStack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (AddonUtils.isClientWorld(world)) {
-            return false;
-        }
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if (tileEntity instanceof ITileInfo) {
-            ((ITileInfo)tileEntity).sendTileInfoToPlayer(player);
-            return true;
-        }
-<<<<<<< HEAD:src/main/scala/andrew/powersuits/modules/TEMultimeterModule.java
-       /* if (tileEntity instanceof IPowerReceptor && ((IPowerReceptor)tileEntity).getPowerProvider() != null) {
-            IPowerReceptor tilePowered = (IPowerReceptor)tileEntity;
-            IPowerProvider tilePP = tilePowered.getPowerProvider();
-            player.sendChatToPlayer("Energy Requested: " + minF(tilePowered.powerRequest(ForgeDirection.UNKNOWN), tilePP.getMaxEnergyStored() - tilePP.getEnergyStored()));
-            return true;
-        }
-        */
-        return false;
-=======
-        	//TODO fix the multimeter somehow
-            player.sendChatToPlayer(ChatMessageComponent.createFromText("This Multimeter is currently broken due to TE 3.0"));
-            return true;
->>>>>>> First pass at updating MPSA for 1.6.4.:src/minecraft/andrew/powersuits/modules/TEMultimeterModule.java
+        return multiMeter.getItem().onItemUseFirst(itemStack,player,world,x,y,z,side,hitX,hitY,hitZ);
+     
     }
 
     public float minF(float a, float b) {
